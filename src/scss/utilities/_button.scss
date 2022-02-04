@@ -1,0 +1,12 @@
+button {
+  padding: 0.7rem;
+  background-color: $secondary-color;
+  border: none;
+  border-radius: 0.2rem !important;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+
+  &:hover {
+    background-color: darken($secondary-color, 5);
+  }
+}

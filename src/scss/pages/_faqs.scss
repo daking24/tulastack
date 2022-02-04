@@ -1,0 +1,26 @@
+.faqs-background {
+  display: grid;
+  grid-template-columns: 96vw;
+  height: 80vh;
+  justify-content: center;
+  background-color: $primary-color;
+  margin-bottom: 620px;
+
+  .faqs-section{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 90vw;
+    background-color: white;
+    border-radius: 8px;
+
+    & h3 {
+      text-align: center;
+    }
+
+    .faq-card {
+      background: #26365A33;
+      padding-left: 30px;
+      margin-bottom: 30px;
+    }
+  }
+}

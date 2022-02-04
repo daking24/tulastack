@@ -1,0 +1,32 @@
+@import './config';
+@import './header';
+@import './footer';
+@import './utilities/button';
+@import './contactus';
+@import './forgotpassword';
+@import './createnewpassword';
+@import './identityverification';
+@import './authenticationverification';
+
+// pages
+@import './pages/index';
+@import './pages/faqs';
+@import './pages/contactuspage';
+@import './pages/signin';
+
+// BASE FONT
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;400;1,200&display=swap');
+
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.link-pointer {
+  cursor: pointer;
+}
