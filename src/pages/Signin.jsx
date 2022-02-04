@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { FormGroup, Dropdown, Form, Spinner } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signin() {
+  const navigate = useNavigate();
+
   const [loginInfo, setLoginInfo] = useState({});
 
   const handleLoginInfo = ({ target }) => {
@@ -20,7 +23,7 @@ export default function Signin() {
         method: 'POST',
         credentials: 'same-origin',
         body: JSON.stringify(_data),
-        mode: 'cors',
+        mode: 'no-cors',
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Credentials': true,
@@ -30,6 +33,20 @@ export default function Signin() {
       });
 
       const data = await response.json();
+      if (data.token) {
+        navigate('/');
+        setIsLogin(false);
+        console.log(data);
+        sessionStorage.setItem(
+          'active',
+          JSON.stringify({
+            firstname: data.user.first_name,
+            lastName: data.user.last_name,
+            email: data.user.email,
+            token: data.token,
+          })
+        );
+      }
 
       console.log(data);
     } catch (err) {
@@ -50,23 +67,6 @@ export default function Signin() {
         <div className='signin-form'>
           <div className='signin-mask'>
             <h3>Sign in to TulaStack</h3>
-            {/* <div className='login d-flex justify-content-left'>
-              <p>Log in as</p>
-              <Dropdown>
-                <Dropdown.Toggle
-                  variant='warning'
-                  id='dropdown-basic trader-button'
-                >
-                  Trader
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item href='#/action-1'>Business</Dropdown.Item>
-                  <Dropdown.Item href='#/action-2'>Individual</Dropdown.Item>
-                  <Dropdown.Item href='#/action-3'>Others</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div> */}
             <Form onSubmit={handleSubmit}>
               <Form.Group className='mb-3' controlId='formBasicEmail'>
                 <Form.Label>Email</Form.Label>
@@ -89,6 +89,7 @@ export default function Signin() {
                   placeholder='password'
                   name='password'
                   required
+                  onChange={handleLoginInfo}
                   value={loginInfo.password || ''}
                 />
               </Form.Group>

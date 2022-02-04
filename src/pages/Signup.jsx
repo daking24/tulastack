@@ -16,8 +16,20 @@ export default function Signup() {
     evt.preventDefault();
 
     setIsSigining(true);
-    const _data = registerInfo;
-    console.log(_data, process.env.REACT_APP_API_REGISTER);
+
+    const data = {
+      email: '',
+      password: 'asdf',
+      first_name: 'John',
+      last_name: 'Doe',
+      occupation: '',
+      phone_number: '',
+      dob: '',
+      next_of_kin: '',
+      address: '',
+    };
+
+    const _data = data;
 
     try {
       const response = await fetch(`${process.env.REACT_APP_API_REGISTER}`, {
