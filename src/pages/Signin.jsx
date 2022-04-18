@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Signin() {
   const navigate = useNavigate();
 
-  const [loginInfo, setLoginInfo] = useState({});
+  const [loginInfo, setLoginInfo] = useState('');
 
   const handleLoginInfo = ({ target }) => {
     setLoginInfo((prev) => ({ ...prev, [target.name]: target.value }));
@@ -27,15 +27,15 @@ export default function Signin() {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Methods': 'GET, POST',
-          'Content-Type': 'application/json, charset=UTF-8',
+          'Access-Control-Allow-Methods': 'POST',
+          'Content-Type': 'application/json',
         },
       });
 
       const data = await response.json();
       if (data.token) {
-        navigate('/');
-        setIsLogin(false);
+        navigate('/dashboard');
+        setIsLogin(true);
         console.log(data);
         sessionStorage.setItem(
           'active',
