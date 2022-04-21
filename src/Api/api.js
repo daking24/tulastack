@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: `https://tulastack-app.herokuapp.com/api/`
+    baseURL: 'https://tulastack-app.herokuapp.com',
 })
